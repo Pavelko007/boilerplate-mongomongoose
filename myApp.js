@@ -83,21 +83,20 @@ const findAndUpdate = (personName, done) => {
   );
 };
 
-
-
-var removeById = function(personId, done) {
+var removeById = function (personId, done) {
   Person.findByIdAndRemove(personId, (err, removedPerson) => {
-      if(err) 
-         return console.log(err);
-      done(null, removedPerson);
-    }
-  ); 
+    if (err) return console.log(err);
+    done(null, removedPerson);
+  });
 };
 
 const removeManyPeople = (done) => {
   const nameToRemove = "Mary";
+  Person.remove({ name: nameToRemove }, (err, outcome) => {
+    if (err) return console.error(err);
+    done(null, outcome);
+  });
 
-  done(null /*, data*/);
 };
 
 const queryChain = (done) => {
